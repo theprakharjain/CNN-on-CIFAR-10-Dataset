@@ -1,27 +1,25 @@
-from flask import Flask, request, render_template, redirect, Blueprint
+from flask import Flask, request, render_template, redirect,  # Blueprint
 # from flask_cors import cross_origin
 from tensorflow.keras.models import load_model
 from PIL import Image
 from io import BytesIO
 import numpy as np
-import sklearn
-import pickle
-import pandas as pd
 import base64
-import cv2
-import os
+# import cv2
+# import os
 
-app1 = Blueprint("app1", __name__, static_folder="static", template_folder="templates", url_prefix="/num_rec_model")
+# app1 = Blueprint("app1", __name__, static_folder="static", template_folder="templates", url_prefix="/num_rec_model")
+app = Flask(__name__)
 
 model = load_model(r"D:\Software Development\Projects\Number Recognition (CNN on MNIST)\CNN_on_MNIST.h5")
 
-@app1.route("/")
+@app.route("/")
 # @cross_origin()
 def home():
     return render_template("canvas.html")
 
 
-@app1.route("/predict",  methods = ["GET", "POST"])
+@app.route("/predict",  methods = ["GET", "POST"])
 # @cross_origin()
 def image_view():
     if request.method == "POST":
@@ -86,3 +84,5 @@ def image_view():
 # run_cmd_file = r"cd\Software Development\Projects\Number Recognition (CNN on MNIST)\Front End\python app.py"
 # os.system(run_cmd_file)
 
+if __name__ == "__main__":
+    app.run(debug = True)
