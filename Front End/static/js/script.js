@@ -93,12 +93,12 @@ function downloaded() {
 // and then assigns the encoded value of canvas to "link" value
 // It further get transferred to the "app.py" file upon the submission of form
 // on the click of the "predict" button
-function link_send() {
-  var link_transfer = document.getElementById("link");
-  var canvas = document.getElementById("canvas");
-  var dataURL = canvas.toDataURL();
-  link_transfer.setAttribute("value", dataURL);
-}
+// function link_send() {
+//   var link_transfer = document.getElementById("link");
+//   var canvas = document.getElementById("canvas");
+//   var dataURL = canvas.toDataURL();
+//   link_transfer.setAttribute("value", dataURL);
+// }
 
 // Manipulating the position of loader(dog animation) upon the show of prediction text
 if (document.getElementById("answer").innerText != "") {

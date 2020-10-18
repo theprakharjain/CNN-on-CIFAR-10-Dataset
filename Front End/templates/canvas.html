@@ -37,10 +37,10 @@
     <div id="buttons">
     <!-- ----------------------------  Canvas Picture Link Form ------------------------------------ -->
     <div class="inner_btn">
-    <form action="/predict" method="POST" id="image" name="image">
+    <form action="/predict" method="POST" id="image" name="image" enctype="multipart/form-data"> <!-- enctype="multipart/form-data" -->
       
-      <input type="text" id="link" name="link"> <br>
-      <input type="submit" value="Predict" id="submit_link" onclick="link_send()">
+      <input type="file" id="link" name="link" accept="image/*"> <br>
+      <input type="submit" value="Predict" id="submit_link" > <!-- onclick="link_send()" -->
     
     </form>
     </div>
@@ -53,7 +53,7 @@
     </div>
     <div class="inner_btn">
       <button type="reset" id="resetbtn">
-        <a href="/num_rec_model" id="refresh">Refresh</a>
+        <a href="/" id="refresh">Refresh</a>
       </button>
     </div>
     </div>
