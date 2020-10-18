@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template, redirect,  # Blueprint
+from flask import Flask, request, render_template, redirect  # Blueprint
 # from flask_cors import cross_origin
 from tensorflow.keras.models import load_model
 from PIL import Image
@@ -11,7 +11,7 @@ import base64
 # app1 = Blueprint("app1", __name__, static_folder="static", template_folder="templates", url_prefix="/num_rec_model")
 app = Flask(__name__)
 
-model = load_model(r"D:\Software Development\Projects\Number Recognition (CNN on MNIST)\CNN_on_MNIST.h5")
+model = load_model(r"D:\Software Development\Projects\Object Recognition (CNN on CIFAR-10)\CNN_on_CIFAR-10.h5")
 
 @app.route("/")
 # @cross_origin()
