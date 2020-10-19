@@ -79,14 +79,14 @@ function clearCoor() {
 }
 
 // Function to download the drawn image on canvas
-function downloaded() {
-  var download = document.getElementById("downloader");
-  var image = document
-    .getElementById("canvas")
-    .toDataURL("image/jpeg")
-    .replace("image/jpeg", "image/octet-stream");
-  download.setAttribute("href", image);
-}
+// function downloaded() {
+//   var download = document.getElementById("downloader");
+//   var image = document
+//     .getElementById("canvas")
+//     .toDataURL("image/jpeg")
+//     .replace("image/jpeg", "image/octet-stream");
+//   download.setAttribute("href", image);
+// }
 
 // Function to transfer the DataURL of canvas to the value of "link" element
 // It transforms the image of the canvas in encoded strings
