@@ -6,77 +6,85 @@ window.addEventListener("load", () => {
 
   // Setting up the 2D canavas
   // saving canvas attributes in canvas variable
-  const canvas = document.querySelector("#canvas");
-  const ctx = canvas.getContext("2d");
+  // const canvas = document.querySelector("#canvas");
+  // const ctx = canvas.getContext("2d");
 
-  // setting height and width of the canvas
-  canvas.height = 500; //window.innerHeight;
-  canvas.width = 500; //window.innerWidth;
+  // // setting height and width of the canvas
+  // canvas.height = 500; //window.innerHeight;
+  // canvas.width = 500; //window.innerWidth;
 
-  // Making and setting "painting" Variable as false
+  // // Making and setting "painting" Variable as false
 
-  let painting = false;
+  // let painting = false;
 
-  // Function to start drawing
-  function startPos(event) {
-    painting = true;
-    draw(event);
-  }
+  // // Function to start drawing
+  // function startPos(event) {
+  //   painting = true;
+  //   draw(event);
+  // }
 
-  // Function to stop drawing
-  function stopPos() {
-    painting = false;
-    ctx.beginPath();
-  }
+  // // Function to stop drawing
+  // function stopPos() {
+  //   painting = false;
+  //   ctx.beginPath();
+  // }
 
-  // Function to draw
-  function draw(event) {
-    // Checking the condition of painting being true
-    if (!painting) return;
+  // // Function to draw
+  // function draw(event) {
+  //   // Checking the condition of painting being true
+  //   if (!painting) return;
 
-    // Capturing the mouse coordinates in the variables
-    var x = event.clientX;
-    var y = event.clientY;
+  //   // Capturing the mouse coordinates in the variables
+  //   var x = event.clientX;
+  //   var y = event.clientY;
 
-    // Setting the attributes of the canvas in respect to "line"
-    ctx.lineWidth = 60; //89 was the previous value
-    ctx.lineCap = "round";
-    ctx.strokeStyle = "white";
+  //   // Setting the attributes of the canvas in respect to "line"
+  //   ctx.lineWidth = 60; //89 was the previous value
+  //   ctx.lineCap = "round";
+  //   ctx.strokeStyle = "white";
 
-    // Drawing line to the mouse coordinates
-    ctx.lineTo(x, y);
-    ctx.stroke();
+  //   // Drawing line to the mouse coordinates
+  //   ctx.lineTo(x, y);
+  //   ctx.stroke();
 
-    ctx.beginPath();
-    ctx.moveTo(x, y);
+  //   ctx.beginPath();
+  //   ctx.moveTo(x, y);
 
-    // Making html elements ---- "loader", "loader_text", "mousepos" visible while drawing on canvas
-    document.getElementById("loader").style.visibility = "visible";
-    document.getElementById("loader_text").style.visibility = "visible";
-    document.getElementById("mousepos").style.visibility = "visible";
-  }
+  //   // Making html elements ---- "loader", "loader_text", "mousepos" visible while drawing on canvas
+  //   document.getElementById("loader").style.visibility = "visible";
+  //   document.getElementById("loader_text").style.visibility = "visible";
+  //   document.getElementById("mousepos").style.visibility = "visible";
+  // }
 
-  // Setting the initiation of "startPos", "stopPos", and "draw" function upon the different mouse activities
-  canvas.addEventListener("mousedown", startPos);
-  canvas.addEventListener("mouseup", stopPos);
-  canvas.addEventListener("mousemove", draw);
+  // // Setting the initiation of "startPos", "stopPos", and "draw" function upon the different mouse activities
+  // canvas.addEventListener("mousedown", startPos);
+  // canvas.addEventListener("mouseup", stopPos);
+  // canvas.addEventListener("mousemove", draw);
 
   // calling the "inactivityTime" function
   inactivityTime();
+
+  // console.log(document.getElementById("pic_final").getAttribute("src"));
+
+  if (document.getElementById("pic_final").getAttribute("src") != ""){
+    document.getElementById("pic_final").style.visibility = "visible";
+  } else {
+    document.getElementById("pic_final").style.visibility = "hidden";
+  }
 });
 
 // Function to show mouse coordinates on screen
-function showCoords(event) {
-  var x = event.clientX;
-  var y = event.clientY;
-  var coor = "Calculating Mouse Position - X coords: " + x + ", Y coords: " + y;
-  document.getElementById("mousepos").innerHTML = coor;
-}
+// function showCoords(event) {
+//   var x = event.clientX;
+//   var y = event.clientY;
+//   var coor = "Calculating Mouse Position - X coords: " + x + ", Y coords: " + y;
+//   document.getElementById("mousepos").innerHTML = coor;
+// }
 
-// Functtion to hide mouse coordinates from screen
-function clearCoor() {
-  document.getElementById("mousepos").innerHTML = "";
-}
+// // Functtion to hide mouse coordinates from screen
+// function clearCoor() {
+//   document.getElementById("mousepos").innerHTML = "";
+// }
 
 // Function to download the drawn image on canvas
 // function downloaded() {
@@ -101,11 +109,11 @@ function clearCoor() {
 // }
 
 // Manipulating the position of loader(dog animation) upon the show of prediction text
-if (document.getElementById("answer").innerText != "") {
-  document.getElementById("loader").style.top = "25%";
-} else {
-  document.getElementById("loader").style.top = "37%";
-}
+// if (document.getElementById("answer").innerText != "") {
+//   document.getElementById("loader").style.top = "25%";
+// } else {
+//   document.getElementById("loader").style.top = "37%";
+// }
 
 // Function to make the predict button blink upon the inactivity on screen
 var inactivityTime = function () {
@@ -138,3 +146,17 @@ var inactivityTime = function () {
     // 1000 milliseconds = 1 second
   }
 };
+
+
+var loadFile = function (event) {
+  var output = document.getElementById('output');
+  output.src = URL.createObjectURL(event.target.files[0]);
+  document.getElementById("output").style.visibility = "visible";
+  output.onload = function () {
+    URL.revokeObjectURL(output.src) // free memory
+  }
+};
+
+function picture_show(){
+  document.getElementById("pic_final").style.visibility = "visible";
+}
