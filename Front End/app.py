@@ -12,15 +12,29 @@ import os
 # app1 = Blueprint("app1", __name__, static_folder="static", template_folder="templates", url_prefix="/num_rec_model")
 app = Flask(__name__)
 
-model = load_model(r"D:\Software Development\Projects\Object Recognition (CNN on CIFAR-10)\CNN_on_CIFAR-10.h5")
+model = load_model(r"CNN_on_CIFAR-10.h5")
 
 @app.route("/")
 # @cross_origin()
 def home():
+
+    # To remove the uploaded image file from the image database on every reload
     for file in os.listdir('static/images'):
         os.remove('static/images/' + file)
         
     return render_template("canvas.html")
+
+
+@app.route("/refresh")
+# @cross_origin()
+def refresh():
+
+    # To remove the uploaded image file from the image database on every reload
+    for file in os.listdir('static/images'):
+        os.remove('static/images/' + file)
+        
+    return render_template("canvas.html")
+    
 
 
 @app.route("/predict",  methods = ["GET", "POST"])
@@ -30,10 +44,13 @@ def image_view():
         # Fetching the Canvas URL through POST Method
         uploaded_img = request.files["link"]
 
+        # Checking whether the image has been uploaded or the field left empty
         if uploaded_img.filename != '':
 
+            # Saving the path of image database folder to the variable
             image_path = os.path.join('static/images', uploaded_img.filename)
 
+            # Saving the image to the image database
             uploaded_img.save(image_path)
 
             # Opening the image
@@ -87,11 +104,13 @@ def image_view():
             # mapped outcomes dictionary with the output
             result = outcomes.get(output[0], "Unexpected Outcome")
 
-            # Rendering the prediction on to the webpage
+            # Rendering the prediction on to the webpage, 
             return render_template("canvas.html", prediction_text = "The image is of {}".format(result), picture = uploaded_img, path = image_path)
 
+        # Rendering template if the upload image filed was left empty
         return render_template("canvas.html", alert = "upload a valid picture")
 
+# To remove the uploaded image file from the image database on every reload
 for file in os.listdir('static/images'):
     os.remove('static/images/' + file)
 
@@ -99,4 +118,4 @@ for file in os.listdir('static/images'):
 # os.system(run_cmd_file)
 
 if __name__ == "__main__":
-    app.run(debug = True)
+    app.run(debug = True, host="0.0.0.0")

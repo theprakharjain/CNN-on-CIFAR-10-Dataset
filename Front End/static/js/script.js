@@ -2,118 +2,20 @@
 
 window.addEventListener("load", () => {
   // Function to check whether script is running or not
-  console.log("helloooooooooo");
-
-  // Setting up the 2D canavas
-  // saving canvas attributes in canvas variable
-  // const canvas = document.querySelector("#canvas");
-  // const ctx = canvas.getContext("2d");
-
-  // // setting height and width of the canvas
-  // canvas.height = 500; //window.innerHeight;
-  // canvas.width = 500; //window.innerWidth;
-
-  // // Making and setting "painting" Variable as false
-
-  // let painting = false;
-
-  // // Function to start drawing
-  // function startPos(event) {
-  //   painting = true;
-  //   draw(event);
-  // }
-
-  // // Function to stop drawing
-  // function stopPos() {
-  //   painting = false;
-  //   ctx.beginPath();
-  // }
-
-  // // Function to draw
-  // function draw(event) {
-  //   // Checking the condition of painting being true
-  //   if (!painting) return;
-
-  //   // Capturing the mouse coordinates in the variables
-  //   var x = event.clientX;
-  //   var y = event.clientY;
-
-  //   // Setting the attributes of the canvas in respect to "line"
-  //   ctx.lineWidth = 60; //89 was the previous value
-  //   ctx.lineCap = "round";
-  //   ctx.strokeStyle = "white";
-
-  //   // Drawing line to the mouse coordinates
-  //   ctx.lineTo(x, y);
-  //   ctx.stroke();
-
-  //   ctx.beginPath();
-  //   ctx.moveTo(x, y);
-
-  //   // Making html elements ---- "loader", "loader_text", "mousepos" visible while drawing on canvas
-  //   document.getElementById("loader").style.visibility = "visible";
-  //   document.getElementById("loader_text").style.visibility = "visible";
-  //   document.getElementById("mousepos").style.visibility = "visible";
-  // }
-
-  // // Setting the initiation of "startPos", "stopPos", and "draw" function upon the different mouse activities
-  // canvas.addEventListener("mousedown", startPos);
-  // canvas.addEventListener("mouseup", stopPos);
-  // canvas.addEventListener("mousemove", draw);
+  // console.log("helloooooooooo");
 
   // calling the "inactivityTime" function
   inactivityTime();
 
   // console.log(document.getElementById("pic_final").getAttribute("src"));
 
+  // Checking whether the final image source is empty in order to hide the boundary of the image
   if (document.getElementById("pic_final").getAttribute("src") != ""){
-    document.getElementById("pic_final").style.visibility = "visible";
+    document.getElementById("pic_final").style.display = "reset";
   } else {
-    document.getElementById("pic_final").style.visibility = "hidden";
+    document.getElementById("pic_final").style.display = "none";
   }
 });
-
-// Function to show mouse coordinates on screen
-// function showCoords(event) {
-//   var x = event.clientX;
-//   var y = event.clientY;
-//   var coor = "Calculating Mouse Position - X coords: " + x + ", Y coords: " + y;
-//   document.getElementById("mousepos").innerHTML = coor;
-// }
-
-// // Functtion to hide mouse coordinates from screen
-// function clearCoor() {
-//   document.getElementById("mousepos").innerHTML = "";
-// }
-
-// Function to download the drawn image on canvas
-// function downloaded() {
-//   var download = document.getElementById("downloader");
-//   var image = document
-//     .getElementById("canvas")
-//     .toDataURL("image/jpeg")
-//     .replace("image/jpeg", "image/octet-stream");
-//   download.setAttribute("href", image);
-// }
-
-// Function to transfer the DataURL of canvas to the value of "link" element
-// It transforms the image of the canvas in encoded strings
-// and then assigns the encoded value of canvas to "link" value
-// It further get transferred to the "app.py" file upon the submission of form
-// on the click of the "predict" button
-// function link_send() {
-//   var link_transfer = document.getElementById("link");
-//   var canvas = document.getElementById("canvas");
-//   var dataURL = canvas.toDataURL();
-//   link_transfer.setAttribute("value", dataURL);
-// }
-
-// Manipulating the position of loader(dog animation) upon the show of prediction text
-// if (document.getElementById("answer").innerText != "") {
-//   document.getElementById("loader").style.top = "25%";
-// } else {
-//   document.getElementById("loader").style.top = "37%";
-// }
 
 // Function to make the predict button blink upon the inactivity on screen
 var inactivityTime = function () {
@@ -147,16 +49,15 @@ var inactivityTime = function () {
   }
 };
 
-
+// To display the chosed file before uploading it
 var loadFile = function (event) {
   var output = document.getElementById('output');
   output.src = URL.createObjectURL(event.target.files[0]);
-  document.getElementById("output").style.visibility = "visible";
+  document.getElementById("output").style.display = "revert";
+
+  document.getElementById("direction").style.display = "none";
+
   output.onload = function () {
     URL.revokeObjectURL(output.src) // free memory
   }
 };
-
-function picture_show(){
-  document.getElementById("pic_final").style.visibility = "visible";
-}

@@ -1,88 +1,115 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link rel="stylesheet" href="static/css/styles.css" />
-  </head>
-  <body>
-    <nav id="navbar">
-      <div id="div_head">
-        <h2 id="nav_head">OBJECT RECOGNITION SYSTEM
-        </h2>
-        </div>
 
-        <div id="div_home">
-          <button><a href="/">Home</a></button>
-        </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <link rel="stylesheet" href="static/css/styles.css" />
+</head>
 
-        <div id="div_portfolio">
-          <button><a href="/portfolio">Portfolio</a></button>
-        </div>
-        
-    </nav>
+<body>
+  <nav id="navbar" class="col-12">
 
-    <!-- Final Display Picture -->
-    <img src="{{ path }}" alt="image" width="360px" height="360px" id="pic_final" style="visibility: hidden;">
+    <div class="col-3"></div>
 
-    <!--{{prediction_text}}-->
-    <h1 id="answer"><b>{{prediction_text}}</b></h1>
-    
-    <!-- Picture chosen on choose file option -->
-    <img id="output" width="100px" height="100px" style="visibility: hidden;" /> <br> <br>
+    <div id="div_head" class="col-6">
+      <h2 id="nav_head">OBJECT RECOGNITION SYSTEM
+      </h2>
+    </div>
 
-    <div id="buttons">
-    <!-- ----------------------------  Picture Link Form ------------------------------------ -->
-    <div class="inner_btn">
+    <div class="col-3" style="padding: 0px; text-align: center;">
 
-    <form action="/predict" method="POST" id="image" name="image" enctype="multipart/form-data">
+      <div id="div_home">
+        <button><a href="/">Home</a></button>
+      </div>
 
-      <input type="file" id="link" name="link" accept="image/*" onchange="loadFile(event)"> <br> <br>
-      
-      <input type="submit" value="Predict" id="submit_link"> <!-- onclick="link_send()" -->
-
-      <button type="reset" id="resetbtn">
-        <a href="/" id="refresh">Refresh</a>
-      </button>
-    
-    </form>
+      <div id="div_portfolio">
+        <button><a href="/portfolio">Portfolio</a></button>
+      </div>
 
     </div>
-    <!-- -------------------------------------------------------------------------------------------- -->
+  </nav>
+
+  <div class="row" id="row-1">
+    <div class="col-6 col-s-6">
+      <!-- Picture chosen on choose file option -->
+      <img id="output" width="100px" height="100px" style="display: none;" />
+
+      <!-- Picture of Direction -->
+      <img src="static/docs/hand.gif" alt="" height="70px" width="70px" id="direction"> <br> <br>
+
+      <div id="buttons">
+        <!-- ----------------------------  Picture Link Form ------------------------------------ -->
+        <div id="form-1">
+          <form action="predict" method="POST" id="image" name="image" enctype="multipart/form-data">
+
+            <input type="file" id="link" name="link" accept="image/*" onchange="loadFile(event)"><br> <br>
+
+            <input type="submit" value="Predict" id="submit_link">
+
+          </form>
+        </div>
+        <br> <br>
+        <div id="form-2">
+          <form action="refresh" method="GET">
+
+            <button type="submit" id="resetbtn" id="resetbtn">
+              Refresh
+            </button>
+
+          </form>
+
+        </div>
+        <!-- -------------------------------------------------------------------------------------------- -->
+      </div>
     </div>
-    <br>
-    <br>
-    <p>~The model recognizes 10 objects~
-      <br>
+    <div class="col-6 col-s-6">
+      <!-- Final Display Picture -->
+      <img src="{{ path }}" alt="image" width="360px" height="360px" id="pic_final" class="img-responsive">
+
+      <br> <br>
+
+      <!--{{prediction_text}}-->
+      <h1 id="answer"><b>{{prediction_text}}</b></h1>
+    </div>
+  </div>
+
+
+  <div class="row" id="row-2">
+    <div class="col-6 col-s-6">
+      <p>~The model recognizes 10 objects~
+      </p>
       <br>
       <table id="tb">
         <tbody>
-        <tr>
-          <td>Airplane</td>
-          <td>Automobile</td>
-        </tr>
-        <tr>
-          <td>Bird</td>
-          <td>Cat</td>
-        </tr>
-        <tr>
-          <td>Deer</td>
-          <td>Dog</td>
-        </tr>
-        <tr>
-          <td>Frog</td>
-          <td>Horse</td>
-        </tr>
-        <tr>
-          <td>Ship</td>
-          <td>Truck</td>
-        </tr>
+          <tr>
+            <td>Airplane</td>
+            <td>Automobile</td>
+          </tr>
+          <tr>
+            <td>Bird</td>
+            <td>Cat</td>
+          </tr>
+          <tr>
+            <td>Deer</td>
+            <td>Dog</td>
+          </tr>
+          <tr>
+            <td>Frog</td>
+            <td>Horse</td>
+          </tr>
+          <tr>
+            <td>Ship</td>
+            <td>Truck</td>
+          </tr>
         </tbody>
       </table>
-    </p>
+    </div>
+  </div>
 
-    <script src="static/js/script.js"></script>
+  <script src="static/js/script.js"></script>
 
-  </body>
+</body>
+
 </html>
